@@ -19,6 +19,7 @@ def get_db_connection():
 def home():
     return """
     <h1>Flask + MySQL CI/CD Deployment</h1>
+    <h1>logesh</h1>
     <p>Deployed on AWS EC2 using Docker Compose.</p>
     <p><a href="/health">Check application health</a></p>
     <p><a href="/db-health">Check database connection</a></p>
