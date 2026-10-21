@@ -13,17 +13,18 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                sh '''
-                    docker run --rm \
-                      -v "$PWD:/app" \
-                      -w /app \
-                      python:3.12-slim \
-                      sh -c "pip install --no-cache-dir -r requirements.txt && pytest -q"
-                '''
-            }
-        }
+       stage('Test') {
+        steps {
+            sh '''
+            docker run --rm \
+              -e PYTHONPATH=/app \
+              -v "$WORKSPACE:/app" \
+              -w /app \
+              python:3.12-slim \
+              sh -c "pip install --no-cache-dir -r requirements.txt && python -m pytest -q"
+        '''
+    }
+}
 
         stage('Build Image') {
             steps {
